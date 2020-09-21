@@ -8,4 +8,3 @@ script:
   - php vendor/bin/phpunit
 after_success:
   - php -v
-  - php -r "var_dump(getenv('test'));"

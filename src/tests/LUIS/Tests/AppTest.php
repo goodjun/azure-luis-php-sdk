@@ -1,30 +1,9 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use LUIS\LuisClient;
 use LUIS\Models\App;
 
-class AppTest extends TestCase
+class AppTest extends FeatureTest
 {
-    protected $luisClient;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $primaryKey = getenv('LUIS_PRIMARY_KEY');
-        $location = getenv('LUIS_LOCATION');
-
-        $this->luisClient = new LuisClient($primaryKey, $location);
-    }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-
-        unset($this->luisClient);
-    }
-
     public function testCreateUpdateDeleteApp()
     {
         $app = (new App())->setName('test')->setDescription('newdescription');
