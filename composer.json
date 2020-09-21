@@ -18,6 +18,6 @@
     },
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {"OSS\\": "src/LUIS"}
+        "psr-4": {"LUIS\\": "src/LUIS"}
     }
 }
