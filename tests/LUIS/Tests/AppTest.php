@@ -1,5 +1,7 @@
 <?php
 
+namespace LUIS\Tests;
+
 use LUIS\Models\App;
 
 class AppTest extends FeatureTest

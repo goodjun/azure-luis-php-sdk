@@ -1,5 +1,7 @@
 <?php
 
+namespace LUIS\Tests;
+
 use PHPUnit\Framework\TestCase;
 use LUIS\LuisClient;
 
