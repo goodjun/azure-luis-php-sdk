@@ -9,8 +9,5 @@ script:
   - mkdir build
   - mkdir build/coverage
   - php vendor/bin/phpunit
-notifications:
-  email:
-    recipients:
-      - goodjun@163.com
-    on_success: change
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
