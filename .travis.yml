@@ -7,4 +7,4 @@ install:
 script:
   - php vendor/bin/phpunit
 after_success:
-  - php -v
+  - bash <(curl -s https://codecov.io/bash)
