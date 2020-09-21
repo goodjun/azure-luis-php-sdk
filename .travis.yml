@@ -5,6 +5,7 @@ install:
   - composer self-update
   - composer install --no-interaction
 script:
-  - php vendor/bin/phpunit
+  - mkdir -p build/logs
+  - phpunit  --coverage-clover build/logs/clover.xml
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - php vendor/bin/coveralls -v
