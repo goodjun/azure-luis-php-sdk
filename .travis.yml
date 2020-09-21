@@ -4,10 +4,7 @@ php:
 install:
   - composer self-update
   - composer install --no-interaction
-  - composer require satooshi/php-coveralls:* --dev
 script:
-  - mkdir build
-  - mkdir build/coverage
   - php vendor/bin/phpunit
 after_success:
   - bash <(curl -s https://codecov.io/bash)
