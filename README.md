@@ -38,6 +38,7 @@ $luisClient->app($appId)->delete();
     ```
     export LUIS_LOCATION=luis-location
     export LUIS_PRIMARY_KEY=luis-primary
+    export LUIS_APP_ID=app-id
     ```
  - Run `php vendor/bin/phpunit`
  
