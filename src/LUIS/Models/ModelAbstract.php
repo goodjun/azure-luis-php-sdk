@@ -1,6 +1,6 @@
 <?php
 
-namespace LUIS\Models;
+namespace Goodjun\LUIS\Models;
 
 use ReflectionClass;
 use \Exception;

@@ -1,6 +1,6 @@
 <?php
 
-namespace LUIS;
+namespace Goodjun\LUIS;
 
 use GuzzleHttp\Client;
 use \Exception;

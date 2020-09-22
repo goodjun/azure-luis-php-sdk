@@ -19,6 +19,6 @@
     },
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {"LUIS\\": "src/LUIS"}
+        "psr-4": {"Goodjun\\LUIS\\": "src/LUIS"}
     }
 }

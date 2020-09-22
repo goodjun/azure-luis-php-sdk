@@ -1,8 +1,8 @@
 <?php
 
-namespace LUIS;
+namespace Goodjun\LUIS;
 
-use LUIS\Models\Utterance;
+use Goodjun\LUIS\Models\Utterance;
 use \Exception;
 
 class LuisAppClient extends LuisAbstract
@@ -168,5 +168,27 @@ class LuisAppClient extends LuisAbstract
     public function deleteUtterance($utteranceId)
     {
         return $this->request('DELETE', 'apps/' . $this->appId . '/versions/' . $this->versionId . '/examples/' . $utteranceId);
+    }
+
+    /**
+     * Get version training status
+     *
+     * @return mixed
+     * @throws Exception
+     */
+    public function trainingStatus()
+    {
+        return $this->request('GET', 'apps/' . $this->appId . '/versions/' . $this->versionId . '/train');
+    }
+
+    /**
+     * Train application version
+     *
+     * @return mixed
+     * @throws Exception
+     */
+    public function train()
+    {
+        return $this->request('POST', 'apps/' . $this->appId . '/versions/' . $this->versionId . '/train');
     }
 }

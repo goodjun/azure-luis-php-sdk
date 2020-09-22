@@ -1,6 +1,6 @@
 <?php
 
-namespace LUIS\Models;
+namespace Goodjun\LUIS\Models;
 
 class App extends ModelAbstract
 {
