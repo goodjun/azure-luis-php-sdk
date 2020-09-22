@@ -37,6 +37,18 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
         unset($this->luisClient);
     }
 
+    public function testGetApps()
+    {
+        $apps = $this->luisClient->getApps();
+        $this->assertNotNull($apps);
+    }
+
+    public function testGetCultures()
+    {
+        $cultures = $this->luisClient->getCultures();
+        $this->assertNotNull($cultures);
+    }
+
     public function testCreateUpdateDeleteApp()
     {
         $app = (new App())->setName('test')->setDescription('newdescription');
