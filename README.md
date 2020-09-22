@@ -1,7 +1,7 @@
 # Microsoft Azure LUIS PHP SDK
 
 [![Build Status](https://travis-ci.com/goodjun/azure-luis-php-sdk.svg?branch=master)](https://travis-ci.com/goodjun/azure-luis-php-sdk)
-[![Coverage Status](https://coveralls.io/repos/github/goodjun/azure-luis-php-sdk/badge.svg?branch=master)](https://coveralls.io/github/goodjun/azure-luis-php-sdk?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/goodjun/azure-luis-php-sdk/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/goodjun/azure-luis-php-sdk?branch=master)
 
 __Welcome to Microsoft Azure LUIS PHP SDK__. This repository contains Azure LUIS PHP SDK and samples for REST API.
 
