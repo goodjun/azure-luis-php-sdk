@@ -80,7 +80,7 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
         $entityId = $this->luisClient->app($this->appId)->createEntity($entityName);
 
         $intentText = 'test intent';
-        $intentId = $this->luisClient->app($this->appId)->createEntity($intentText);
+        $intentId = $this->luisClient->app($this->appId)->createIntent($intentText);
 
         $utteranceText = 'my name is tom';
         $utterance = new Utterance();
