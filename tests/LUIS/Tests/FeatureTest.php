@@ -107,4 +107,15 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
         $this->luisClient->app($this->appId)->deleteEntity($entityId);
         $this->luisClient->app($this->appId)->deleteIntent($intentId);
     }
+
+    public function testTrainApp()
+    {
+        $response = $this->luisClient->app($this->appId)->version('0.1')->train();
+        $this->assertNotNull($response);
+
+        sleep(3);
+
+        $response = $this->luisClient->app($this->appId)->version('0.1')->trainingStatus();
+        $this->assertNotNull($response);
+    }
 }
