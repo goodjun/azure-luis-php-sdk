@@ -4,6 +4,7 @@ namespace LUIS\Tests;
 
 use LUIS\LuisClient;
 use LUIS\Models\App;
+use LUIS\Models\Utterance;
 
 class FeatureTest extends \PHPUnit_Framework_TestCase
 {
@@ -51,10 +52,10 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateUpdateDeleteIntent()
     {
-        $intentId = $this->luisClient->app($this->appId)->createIntent('test');
+        $intentId = $this->luisClient->app($this->appId)->createIntent('first intent');
         $this->assertNotNull($intentId);
 
-        $response = $this->luisClient->app($this->appId)->updateIntent($intentId, 'newname');
+        $response = $this->luisClient->app($this->appId)->updateIntent($intentId, 'new intent');
         $this->assertNotNull($response);
 
         $response = $this->luisClient->app($this->appId)->deleteIntent($intentId);
@@ -63,13 +64,35 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateUpdateDeleteEntity()
     {
-        $entityId = $this->luisClient->app($this->appId)->createEntity('test');
+        $entityId = $this->luisClient->app($this->appId)->createEntity('first entity');
         $this->assertNotNull($entityId);
 
-        $response = $this->luisClient->app($this->appId)->updateEntity($entityId, 'newname');
+        $response = $this->luisClient->app($this->appId)->updateEntity($entityId, 'new entity');
         $this->assertNotNull($response);
 
         $response = $this->luisClient->app($this->appId)->deleteEntity($entityId);
         $this->assertNotNull($response);
+    }
+
+    public function testCreateDeleteUtterance()
+    {
+        $entityName = 'test entity';
+        $entityId = $this->luisClient->app($this->appId)->createEntity($entityName);
+
+        $intentText = 'test intent';
+        $intentId = $this->luisClient->app($this->appId)->createEntity($intentText);
+
+        $utteranceText = 'my name is tom';
+        $utterance = new Utterance();
+        $utterance->setText($utteranceText)
+            ->setIntentName($intentText)
+            ->addEntityLabel($entityName, 0, 1);
+
+        $utteranceId = $this->luisClient->app($this->appId)->addUtterance($utterance);
+        $this->assertNotNull($utteranceId);
+
+        $this->luisClient->app($this->appId)->deleteUtterance($utteranceId);
+        $this->luisClient->app($this->appId)->deleteEntity($entityId);
+        $this->luisClient->app($this->appId)->deleteIntent($intentId);
     }
 }
