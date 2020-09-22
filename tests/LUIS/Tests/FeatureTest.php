@@ -1,10 +1,10 @@
 <?php
 
-namespace LUIS\Tests;
+namespace Goodjun\LUIS\Tests;
 
-use LUIS\LuisClient;
-use LUIS\Models\App;
-use LUIS\Models\Utterance;
+use Goodjun\LUIS\LuisClient;
+use Goodjun\LUIS\Models\App;
+use Goodjun\LUIS\Models\Utterance;
 
 class FeatureTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,6 +25,10 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
         $primaryKey = getenv('LUIS_PRIMARY_KEY');
         $location = getenv('LUIS_LOCATION');
         $appId = getenv('LUIS_APP_ID');
+
+        $primaryKey = '5e821faee38f471582d04cd97ab1b04c';
+        $location = 'westus';
+        $appId = '33dbb1e3-ce22-4137-acca-a3b568d58b03';
 
         $this->luisClient = new LuisClient($primaryKey, $location);
         $this->appId = $appId;

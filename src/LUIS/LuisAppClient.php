@@ -1,8 +1,8 @@
 <?php
 
-namespace LUIS;
+namespace Goodjun\LUIS;
 
-use LUIS\Models\Utterance;
+use Goodjun\LUIS\Models\Utterance;
 use \Exception;
 
 class LuisAppClient extends LuisAbstract
