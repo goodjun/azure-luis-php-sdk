@@ -39,7 +39,10 @@ class LuisResponseException extends Exception
             return new self($previous->getMessage(), $previous->getCode(), $previous);
         }
 
-        if (empty($responseJson->error) || empty($responseJson->error->message || empty($responseJson->error->code))) {
+        if (!property_exists($responseJson, 'error') ||
+            !property_exists($responseJson->error, 'code') ||
+            !property_exists($responseJson->error, 'message'))
+        {
             return new self($previous->getMessage(), $previous->getCode(), $previous);
         }
 
