@@ -47,7 +47,7 @@ abstract class LuisAbstract
             $response = $httpClient->request($method, $requestUrl, $options);
             return json_decode($response->getBody()->getContents());
         } catch (Exception $exception) {
-            throw(new Exception($exception->getMessage()));
+            throw(new Exception($exception->getMessage(), $exception->getCode(), $exception->getPrevious()));
         }
     }
 
