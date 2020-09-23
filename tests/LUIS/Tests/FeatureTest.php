@@ -1,6 +1,6 @@
 <?php
 
-namespace Goodjun\LUIS\Tests;
+namespace LUIS\Tests;
 
 use Goodjun\LUIS\LuisClient;
 use Goodjun\LUIS\Models\App;

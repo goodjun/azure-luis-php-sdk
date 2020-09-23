@@ -2,8 +2,9 @@
 
 namespace Goodjun\LUIS;
 
+use Goodjun\LUIS\Exceptions\LuisResponseException;
 use GuzzleHttp\Client;
-use \Exception;
+use GuzzleHttp\Exception\RequestException;
 
 abstract class LuisAbstract
 {
@@ -15,7 +16,7 @@ abstract class LuisAbstract
     /**
      * @var string Luis base uri
      */
-    CONST API_URI = 'api.cognitive.microsoft.com';
+    const API_URI = 'api.cognitive.microsoft.com';
 
     /**
      * @var string Luis API primary key
@@ -46,8 +47,8 @@ abstract class LuisAbstract
         try {
             $response = $httpClient->request($method, $requestUrl, $options);
             return json_decode($response->getBody()->getContents());
-        } catch (Exception $exception) {
-            throw(new Exception($exception->getMessage(), $exception->getCode(), $exception->getPrevious()));
+        } catch (RequestException $e) {
+            throw LuisResponseException::create($e->getRequest(), $e->getResponse(), $e);
         }
     }
 
