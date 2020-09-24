@@ -1,6 +1,6 @@
 <?php
 
-namespace Goodjun\LUIS\Tests;
+namespace LUIS\Tests;
 
 use Goodjun\LUIS\LuisClient;
 use Goodjun\LUIS\Models\App;
@@ -117,5 +117,20 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
 
         $response = $this->luisClient->app($this->appId)->version('0.1')->trainingStatus();
         $this->assertNotNull($response);
+    }
+
+    public function testPredict()
+    {
+        $texts = [
+            'my name is tom',
+            'my name is ben',
+        ];
+
+        $response = $this->luisClient->app($this->appId)->version('0.1')->predict($texts);
+
+        $this->assertObjectHasAttribute('text',$response[0]);
+        $this->assertObjectHasAttribute('tokenMetadata',$response[0]);
+        $this->assertObjectHasAttribute('tokenizedText',$response[0]);
+        $this->assertObjectHasAttribute('entityPredictions',$response[0]);
     }
 }

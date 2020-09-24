@@ -2,8 +2,9 @@
 
 namespace Goodjun\LUIS;
 
+use Goodjun\LUIS\Exceptions\LuisResponseException;
 use GuzzleHttp\Client;
-use \Exception;
+use GuzzleHttp\Exception\RequestException;
 
 abstract class LuisAbstract
 {
@@ -15,7 +16,7 @@ abstract class LuisAbstract
     /**
      * @var string Luis base uri
      */
-    CONST API_URI = 'api.cognitive.microsoft.com';
+    const API_URI = 'api.cognitive.microsoft.com';
 
     /**
      * @var string Luis API primary key
@@ -30,9 +31,9 @@ abstract class LuisAbstract
     /*
      * Http request
      */
-    protected function request($method, $object, $data = null)
+    protected function request($method, $object, $data = null, $apiType = 'api')
     {
-        $requestUrl = $this->generateRequestUrl() . $object;
+        $requestUrl = $this->generateRequestUrl($apiType) . $object;
 
         $options['headers'] = [
             'Ocp-Apim-Subscription-Key' => $this->primaryKey,
@@ -46,21 +47,22 @@ abstract class LuisAbstract
         try {
             $response = $httpClient->request($method, $requestUrl, $options);
             return json_decode($response->getBody()->getContents());
-        } catch (Exception $exception) {
-            throw(new Exception($exception->getMessage(), $exception->getCode(), $exception->getPrevious()));
+        } catch (RequestException $e) {
+            throw LuisResponseException::create($e->getRequest(), $e->getResponse(), $e);
         }
     }
 
     /**
      * Generate request url
      *
+     * @param string $apiType
      * @return string
      */
-    protected function generateRequestUrl()
+    protected function generateRequestUrl($apiType = 'api')
     {
         $scheme = 'https://';
         $endpointUri = $this->location . '.' . self::API_URI;
-        $apiPath = '/luis/api/' . self::API_VERSION . '/';
+        $apiPath = '/luis/' . $apiType . '/' . self::API_VERSION . '/';
 
         return $scheme . $endpointUri . $apiPath;
     }
