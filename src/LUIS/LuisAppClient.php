@@ -191,4 +191,15 @@ class LuisAppClient extends LuisAbstract
     {
         return $this->request('POST', 'apps/' . $this->appId . '/versions/' . $this->versionId . '/train');
     }
+
+    /**
+     * predict
+     *
+     * @return mixed
+     * @throws Exceptions\LuisResponseException
+     */
+    public function predict($texts)
+    {
+        return $this->request('POST', 'apps/' . $this->appId . '/versions/' . $this->versionId . '/predict', $texts, 'webApi');
+    }
 }

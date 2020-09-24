@@ -31,9 +31,9 @@ abstract class LuisAbstract
     /*
      * Http request
      */
-    protected function request($method, $object, $data = null)
+    protected function request($method, $object, $data = null, $apiType = 'api')
     {
-        $requestUrl = $this->generateRequestUrl() . $object;
+        $requestUrl = $this->generateRequestUrl($apiType) . $object;
 
         $options['headers'] = [
             'Ocp-Apim-Subscription-Key' => $this->primaryKey,
@@ -55,13 +55,14 @@ abstract class LuisAbstract
     /**
      * Generate request url
      *
+     * @param string $apiType
      * @return string
      */
-    protected function generateRequestUrl()
+    protected function generateRequestUrl($apiType = 'api')
     {
         $scheme = 'https://';
         $endpointUri = $this->location . '.' . self::API_URI;
-        $apiPath = '/luis/api/' . self::API_VERSION . '/';
+        $apiPath = '/luis/' . $apiType . '/' . self::API_VERSION . '/';
 
         return $scheme . $endpointUri . $apiPath;
     }
